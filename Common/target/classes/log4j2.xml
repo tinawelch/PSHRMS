@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configuration>
+<Configuration status="DEBUG">
+	<Properties>
+		<Property name="log-path">/\\MLWWEB55/myproject/tomcat/logs/</Property>
+		<!-- <Property name="log-path">C:/myproject/tomcat/logs/</Property> -->
+		<!--MTR FROM SK Uncomment above line for production deployment and comment below line -->
+		<!--MTR FROM SK <Property name="log-path">C:/myproject/tomcat/logs/</Property> -->
+		<!--MTR I am going to see what happens if I don't specify a log path -->
+		<!-- <Property name="log-path">C:/Apache/Tomcat/logs/</Property> -->
+	</Properties>
+	<Appenders>
+		<!-- <Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] PPP-SK-MTR- %-5level %logger{36} - %msg%n" />
+		</Console> -->
+		<RollingFile name="RollingFile" fileName="${log-path}/common.log"
+			filePattern="${log-path}/common-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<pattern>%d{dd/MMM/yyyy HH:mm:ss,SSS}-COMN- %c{1}: %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="5 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="5" />
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="root" level="DEBUG" additivity="false">
+			<appender-ref ref="RollingFile" level="DEBUG" />
+		</Logger>
+		<Root level="DEBUG" additivity="false">
+			<AppenderRef ref="RollingFile" />
+			<!-- <AppenderRef ref="Console" /> -->
+		</Root>
+ 		<logger name="org.hibernate.validator.internal" level="error" />
+		<logger name="org.springframework" level="error" />
+		<logger name="org.springframework.security" level="error" />
+		<logger name="org.springframework.jndi" level="error" />
+		<logger name="org.springframework.jdbc" level="error" />
+		<logger name="org.springframework.beans" level="error" />
+		<logger name="com.mchange" level="error" />
+		<logger name="waffle.spring" level="error" />
+		<logger name="waffle.servlet.spi" level="error" /> -->
+		<logger name="com.footlocker.web.control.PppController" level="debug" />
+		<logger name="com.footlocker.dao.PppDocumentDao" level="debug" />
+	</Loggers>
+</Configuration>
